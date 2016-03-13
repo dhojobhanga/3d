@@ -9,17 +9,13 @@ var camera = new THREE.PerspectiveCamera(60, 1, 1,10000);
 camera.position.set(-1000, 540, 780);
 scene.add(camera);
 
+if (!window.WebGLRenderingContext) {
+	alert ("This tool requires WebGL support to run!\nPlease use a newer browser with WebGL (recommended: Chrome or FireFox).");
+}
+
 // create renderer and append to container
 var container = $("#canvas-container");
-var renderer
-if (window.WebGLRenderingContext) {
-	renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true, preserveDrawingBuffer: true });
-}
-else
-{
-	alert ("WebGL is not supported on your browser. We will fallback to canvas renderer, but things might look really bad.\nPlease consider using latest Chrome or Fire Fox for best results!");
-	renderer = new THREE.CanvasRenderer({ alpha: true, antialias: true, preserveDrawingBuffer: true });
-}
+var renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true, preserveDrawingBuffer: true });
 container.append(renderer.domElement);
 
 // handle resize + initial renderer init
