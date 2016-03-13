@@ -11,7 +11,15 @@ scene.add(camera);
 
 // create renderer and append to container
 var container = $("#canvas-container");
-var renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true, preserveDrawingBuffer: true });
+var renderer
+if (window.WebGLRenderingContext) {
+	renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true, preserveDrawingBuffer: true });
+}
+else
+{
+	alert ("WebGL is not supported on your browser. We will fallback to canvas renderer, but things might look really bad.\nPlease consider using latest Chrome or Fire Fox for best results!");
+	renderer = new THREE.CanvasRenderer({ alpha: true, antialias: true, preserveDrawingBuffer: true });
+}
 container.append(renderer.domElement);
 
 // handle resize + initial renderer init
@@ -184,7 +192,7 @@ function toImage()
 	var canvas = renderer.domElement;
 	var img = canvas.toDataURL("image/png");
 	var new_window = window.open(img);
-	onresize();
+	onResize();
 	render();
 }
 
