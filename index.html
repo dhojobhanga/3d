@@ -461,5 +461,16 @@
 	}
 	</style>
 	
+	<script>
+		try
+		{
+			var isChrome = /Chrome/.test(navigator.userAgent) && /Google Inc/.test(navigator.vendor);
+			if (isChrome) alert("Warning! Saving images don't work on Chrome-based browsers. Try FireFox or Edge..");
+		}
+		catch
+		{
+		}
+	</script>
+	
   </body>
 </html>
