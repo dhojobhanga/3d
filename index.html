@@ -351,12 +351,38 @@
 					<!-- Save image menu -->
 					<div id="sectionSave" class="tab-pane option-tab fade">
 						<h3>Save Image</h3>
-						<p>Here you can save your product image to use it!<br />
-						Clicking on the button below will open a new window with the rendered image. Just right-click on the image and choose "Save image as" to download your product picture.<br/><br/>
-						You can use the result image for any personal and/or commercial purpose.</p>
-						<button class="btn btn-success" onclick="toImage();">
-							 Get image!
+						<p>Here you can save your final product image and start using it!<br />
+						Click on 'Generate Image' to create your image in the desired size.</p>
+						
+						<label>Image Width (height is set automatically): &nbsp;</label><input type="number" id="result-img-size-x" value="1400" name="img-size-x" min="200" max="10000"> <br /><br />
+						<button class="btn btn-success btn-lg" onclick="toImage();">
+							 Generate Image!
 						</button>
+						<br />
+					</div>
+					
+					<!-- result image div -->
+					<div id="result-img-div" style="
+					display: none;
+					position: fixed;
+					left: 50%;
+					margin-left: -400px;
+					width: 800px;
+					height: 800px;
+					top: 50px;
+					padding: 10px;
+					background: #2fa4e7;
+					border: black 2px solid;
+					border-radius: 15px;">
+						<img id="result-img" style="display:block; width:100%; height: auto;">
+						<h2 style="color:white">To save image, right click on the image above and select "Save Image As..", or alternatively, <a id="save-img-link" download="image.png" style="color: yellow">click here</a>.</h2>
+						<h4 style="color:#ddd">You may use the result image for any personal and / or commercial purpose. No attribution required (although appreciated).</h4>
+						<h3><a style="
+						position: absolute;
+						bottom: 10px;
+						left: 15px;
+						color: yellow;
+						cursor: pointer;" onclick="document.getElementById('result-img-div').style.display='none';">Close Window</a></h3>
 					</div>
 					
 				</div>
@@ -460,17 +486,6 @@
 		max-width: 100px;
 	}
 	</style>
-	
-	<script>
-		try
-		{
-			var isChrome = /Chrome/.test(navigator.userAgent) && /Google Inc/.test(navigator.vendor);
-			if (isChrome) alert("Warning! Saving images don't work on Chrome-based browsers. Try FireFox or Edge..");
-		}
-		catch
-		{
-		}
-	</script>
 	
   </body>
 </html>

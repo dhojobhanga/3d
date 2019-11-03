@@ -183,11 +183,15 @@ requestAnimationFrame = requestAnimationFrame || function(callback) {setTimeout(
 // render canvas!
 function toImage()
 {
-	renderer.setSize(1400,1000);
+	var width = parseInt(document.getElementById("result-img-size-x").value);
+	var height = width * 1000 / 1400;
+	renderer.setSize(width,height);
 	render();
 	var canvas = renderer.domElement;
-	var img = canvas.toDataURL("image/png");
-	var new_window = window.open(img);
+	var img_data = canvas.toDataURL("image/png");
+	document.getElementById('result-img-div').style.display = "block";
+	document.getElementById('result-img').src = img_data;
+	document.getElementById('save-img-link').href = img_data;
 	onResize();
 	render();
 }
