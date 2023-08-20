@@ -3,12 +3,6 @@
 * Ronen Ness, 2016
 */
 
-// create scene and camera
-var scene = new THREE.Scene();
-var camera = new THREE.PerspectiveCamera(60, 1, 1,10000);
-camera.position.set(-1000, 540, 780);
-scene.add(camera);
-
 if (!window.WebGLRenderingContext) {
 	alert ("This tool requires WebGL support to run!\nPlease use a newer browser with WebGL (recommended: Chrome or FireFox).");
 }
@@ -18,12 +12,27 @@ var container = $("#canvas-container");
 var renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true, preserveDrawingBuffer: true });
 container.append(renderer.domElement);
 
+// create scene and camera
+var scene = new THREE.Scene();
+var camera = new THREE.PerspectiveCamera(50, container.width() / container.height(), 1, 10000);
+camera.position.set(-1000, 540, 780);
+scene.add(camera);
+
 // handle resize + initial renderer init
 $(document ).ready(onResize);
 $(window).resize(onResize);
 function onResize()
 {
 	renderer.setSize(container.width(), container.height());
+    camera.aspect = container.width() / container.height();
+    camera.updateProjectionMatrix();
+}
+
+// update camera fov
+function updateCameraFov(fov)
+{
+    camera.fov = parseInt(fov);
+    camera.updateProjectionMatrix();
 }
 
 // create an orbit controller
