@@ -309,7 +309,7 @@
 									<input style="width:30%; display:inline;" id="size-y" type="number" class="form-control" value="800" min="50" max="1000" step="10" onchange="renderProductBox();" >
 								</p>
 								<p>Box depth:
-									<input style="width:30%; display:inline;" id="size-z" type="number" class="form-control" value="100" min="50" max="1000" step="10" onchange="renderProductBox();" >
+									<input style="width:30%; display:inline;" id="size-z" type="number" class="form-control" value="200" min="50" max="1000" step="10" onchange="renderProductBox();" >
 								</p>
 							</div>
 							
@@ -346,6 +346,8 @@
 							<input class="form-control" id="camera-position" aria-describedby="camera-position" placeholder="0,0,0" style="width:220px; display:inline-block">
 							<label for="camera-lookat"> Look at: </label>
 							<input class="form-control" id="camera-lookat" aria-describedby="camera-lookat" placeholder="0,0,0" style="width:220px; display:inline-block">
+                            <label for="camera-lookat"> Camera FOV: </label>
+							<input class="form-control" id="camera-fov" onchange="updateCameraFov(this.value);" aria-describedby="camera-fov" type="number" value="50" min="1" max="360" style="width:220px; display:inline-block">
 						</div>
 						<script>
 						// function to set camera position
